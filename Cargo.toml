@@ -1,0 +1,8 @@
+[workspace]
+members = [
+    "compactorsanim",
+    "compactorsrendering",
+    "distanim",
+    "distrendering",
+    "renderingcommon",
+]
