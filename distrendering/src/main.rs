@@ -4,12 +4,12 @@ use compactorsanim::compactors::Compactors;
 use distanim::estimated_quantiles::{EstimatedQuantiles, QuantileElement};
 use ggez::{
     conf::{NumSamples, WindowMode},
-    event::{self, EventHandler},
+    event::EventHandler,
     graphics::{
         self, get_window_color_format, Canvas, Color, DrawMode, DrawParam, Mesh, MeshBuilder, Rect,
         Transform,
     },
-    mint::{self, Point2},
+    mint,
     Context, GameError, GameResult,
 };
 
