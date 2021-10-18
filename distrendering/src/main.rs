@@ -16,10 +16,7 @@ use ggez::{
 use png::{BitDepth, ColorType};
 use rand::{prelude::StdRng, SeedableRng};
 use rand_distr::Distribution;
-use renderingcommon::{
-    Element, DISTRIBUTION, DISTRIBUTION_MIN, DISTRIBUTION_PRACTICAL_RANGE, ELEMENT_WIDTH,
-    MAX_ELEMENT_HEIGHT, SPACE_BETWEEN_ELEMENTS,
-};
+use renderingcommon::{DISTRIBUTION, DISTRIBUTION_MIN, DISTRIBUTION_PRACTICAL_RANGE, ELEMENT_WIDTH, Element, MAX_ELEMENT_HEIGHT, SPACE_BETWEEN_ELEMENTS, save_frame};
 
 struct MainState<const BUCKETS: usize> {
     elements: Vec<QuantileElement<Element>>,
@@ -222,19 +219,4 @@ fn main() -> GameResult {
         state.step();
     }
     Ok(())
-}
-
-fn save_frame(frame: Vec<u8>, frame_id: u32, width: u32, height: u32) {
-    let mut encoder = png::Encoder::new(
-        File::create(format!("frame{:0w$}.png", frame_id, w = 4)).unwrap(),
-        width,
-        height,
-    );
-    encoder.set_color(ColorType::Rgba);
-    encoder.set_depth(BitDepth::Eight);
-    encoder
-        .write_header()
-        .unwrap()
-        .write_image_data(&frame)
-        .unwrap();
 }

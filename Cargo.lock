@@ -2055,6 +2055,7 @@ version = "0.1.0"
 dependencies = [
  "ggez",
  "lazy_static",
+ "png 0.17.2",
  "rand",
  "rand_distr",
 ]

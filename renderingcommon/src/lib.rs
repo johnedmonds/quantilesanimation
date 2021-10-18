@@ -1,5 +1,8 @@
+use std::fs::File;
+
 use ggez::graphics::Color;
 use lazy_static::lazy_static;
+use png::{BitDepth, ColorType};
 use rand_distr::Normal;
 pub type Element = u32;
 pub const ELEMENT_WIDTH: u32 = 10;
@@ -22,4 +25,18 @@ lazy_static! {
     pub static ref DISTRIBUTION_MIN: f32 = DISTRIBUTION.mean() - DISTRIBUTION.std_dev() * 4.0;
     pub static ref DISTRIBUTION_PRACTICAL_RANGE: f32 =
         (DISTRIBUTION.mean() + DISTRIBUTION.std_dev() * 3.0) - *DISTRIBUTION_MIN;
+}
+pub fn save_frame(frame: Vec<u8>, frame_id: u32, width: u32, height: u32) {
+    let mut encoder = png::Encoder::new(
+        File::create(format!("frame{:0w$}.png", frame_id, w = 4)).unwrap(),
+        width,
+        height,
+    );
+    encoder.set_color(ColorType::Rgba);
+    encoder.set_depth(BitDepth::Eight);
+    encoder
+        .write_header()
+        .unwrap()
+        .write_image_data(&frame)
+        .unwrap();
 }

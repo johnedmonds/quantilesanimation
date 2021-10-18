@@ -1,7 +1,4 @@
-use renderingcommon::{
-    Element, CAPACITY_RECT_COLOR, ELEMENT_WIDTH, MAX_ELEMENT_HEIGHT, SPACE_BETWEEN_ELEMENTS,
-    USED_CAPACITY_RECT_COLOR,
-};
+use renderingcommon::{CAPACITY_RECT_COLOR, ELEMENT_WIDTH, Element, MAX_ELEMENT_HEIGHT, SPACE_BETWEEN_ELEMENTS, USED_CAPACITY_RECT_COLOR, save_frame};
 use std::{cmp::max, fs::File};
 
 use ggez::{
@@ -149,19 +146,4 @@ fn main() -> GameResult {
     }
 
     Ok(())
-}
-
-fn save_frame(frame: Vec<u8>, frame_id: u32, width: u32, height: u32) {
-    let mut encoder = png::Encoder::new(
-        File::create(format!("frame{:0w$}.png", frame_id, w = 4)).unwrap(),
-        width,
-        height,
-    );
-    encoder.set_color(ColorType::Rgba);
-    encoder.set_depth(BitDepth::Eight);
-    encoder
-        .write_header()
-        .unwrap()
-        .write_image_data(&frame)
-        .unwrap();
 }
