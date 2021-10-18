@@ -1,4 +1,4 @@
-use std::{cmp::max, fs::File};
+use std::{cmp::max};
 
 use compactorsanim::compactors::Compactors;
 use distanim::estimated_quantiles::{EstimatedQuantiles, QuantileElement};
@@ -13,7 +13,7 @@ use ggez::{
     Context, GameError, GameResult,
 };
 
-use png::{BitDepth, ColorType};
+
 use rand::{prelude::StdRng, SeedableRng};
 use rand_distr::Distribution;
 use renderingcommon::{DISTRIBUTION, DISTRIBUTION_MIN, DISTRIBUTION_PRACTICAL_RANGE, ELEMENT_WIDTH, Element, MAX_ELEMENT_HEIGHT, SPACE_BETWEEN_ELEMENTS, save_frame};
@@ -211,7 +211,7 @@ fn main() -> GameResult {
     let canvas = Canvas::new(&mut ctx, w as u16, h as u16, NumSamples::One, color_format)?;
     graphics::set_canvas(&mut ctx, Some(&canvas));
     let mut frame_id = 0;
-    for i in 0..state.elements.len() {
+    for _i in 0..state.elements.len() {
         graphics::set_canvas(&mut ctx, Some(&canvas));
         state.draw(&mut ctx)?;
         save_frame(canvas.to_rgba8(&mut ctx)?, frame_id, w, h);

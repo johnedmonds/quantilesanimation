@@ -1,5 +1,5 @@
 use renderingcommon::{CAPACITY_RECT_COLOR, ELEMENT_WIDTH, Element, MAX_ELEMENT_HEIGHT, SPACE_BETWEEN_ELEMENTS, USED_CAPACITY_RECT_COLOR, save_frame};
-use std::{cmp::max, fs::File};
+use std::{cmp::max};
 
 use ggez::{
     conf::{NumSamples, WindowMode},
@@ -9,14 +9,14 @@ use ggez::{
     },
     GameError, GameResult,
 };
-use png::{BitDepth, ColorType};
+
 use rand::{
     prelude::{Distribution, StdRng},
     SeedableRng,
 };
 
 use compactorsanim::compactor::Compactor;
-use rand_distr::Normal;
+
 
 use compactorsanim::compactors::Compactors;
 
