@@ -1,4 +1,4 @@
-use std::{cmp::max};
+use std::cmp::max;
 
 use compactorsanim::compactors::Compactors;
 use distanim::estimated_quantiles::{EstimatedQuantiles, QuantileElement};
@@ -9,14 +9,15 @@ use ggez::{
         self, get_window_color_format, Canvas, Color, DrawMode, DrawParam, Mesh, MeshBuilder, Rect,
         Transform,
     },
-    mint,
-    Context, GameError, GameResult,
+    mint, Context, GameError, GameResult,
 };
-
 
 use rand::{prelude::StdRng, SeedableRng};
 use rand_distr::Distribution;
-use renderingcommon::{DISTRIBUTION, DISTRIBUTION_MIN, DISTRIBUTION_PRACTICAL_RANGE, ELEMENT_WIDTH, Element, MAX_ELEMENT_HEIGHT, SPACE_BETWEEN_ELEMENTS, save_frame};
+use renderingcommon::{
+    save_frame, Element, DISTRIBUTION, DISTRIBUTION_MIN, DISTRIBUTION_PRACTICAL_RANGE,
+    ELEMENT_WIDTH, MAX_ELEMENT_HEIGHT, SPACE_BETWEEN_ELEMENTS,
+};
 
 struct MainState<const BUCKETS: usize> {
     elements: Vec<QuantileElement<Element>>,

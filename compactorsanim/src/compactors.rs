@@ -1,3 +1,5 @@
+use itertools::{EitherOrBoth, Itertools};
+
 use crate::compactor::Compactor;
 use std::{cell::RefCell, cmp::max};
 
@@ -53,6 +55,26 @@ where
     pub fn update(&mut self, element: T) {
         self.compactors[0].borrow_mut().update(element);
         self.record_frame();
+        self.compact();
+    }
+    pub fn merge<G>(&mut self, other: Compactors<T, G, LAZY>)
+    where
+        G: FnMut(Vec<Compactor<T>>),
+    {
+        let mut compactors = Vec::new();
+        std::mem::swap(&mut self.compactors, &mut compactors);
+        self.compactors = compactors
+            .into_iter()
+            .zip_longest(other.compactors.into_iter())
+            .map(|element| match element {
+                EitherOrBoth::Both(a, b) => {
+                    a.borrow_mut().data.extend(b.into_inner().data);
+                    a
+                }
+                EitherOrBoth::Left(a) => a,
+                EitherOrBoth::Right(a) => a,
+            })
+            .collect();
         self.compact();
     }
 

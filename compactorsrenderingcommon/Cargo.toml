@@ -1,5 +1,5 @@
 [package]
-name = "compactorsrendering"
+name = "compactorsrenderingcommon"
 version = "0.1.0"
 edition = "2018"
 
@@ -7,9 +7,7 @@ edition = "2018"
 
 [dependencies]
 compactorsanim = {path = "../compactorsanim"}
-compactorsrenderingcommon = {path = "../compactorsrenderingcommon"}
 ggez = "0.6.1"
 renderingcommon = {path = "../renderingcommon"}
-rand = "0.8.4"
 rand_distr = "0.4.2"
-png = "0.17.2"
+rand = "0.8.4"

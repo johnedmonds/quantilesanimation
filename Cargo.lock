@@ -324,14 +324,29 @@ dependencies = [
 [[package]]
 name = "compactorsanim"
 version = "0.1.0"
+dependencies = [
+ "itertools",
+]
 
 [[package]]
 name = "compactorsrendering"
 version = "0.1.0"
 dependencies = [
  "compactorsanim",
+ "compactorsrenderingcommon",
  "ggez",
  "png 0.17.2",
+ "rand",
+ "rand_distr",
+ "renderingcommon",
+]
+
+[[package]]
+name = "compactorsrenderingcommon"
+version = "0.1.0"
+dependencies = [
+ "compactorsanim",
+ "ggez",
  "rand",
  "rand_distr",
  "renderingcommon",
@@ -1156,6 +1171,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "itertools"
+version = "0.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "69ddb889f9d0d08a67338271fa9b62996bc788c7796a5c18cf057420aaed5eaf"
+dependencies = [
+ "either",
+]
+
+[[package]]
 name = "itoa"
 version = "0.4.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1789,6 +1813,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "60ac8dda2e5cc09bf6480e3b3feff9783db251710c922ae9369a429c51efdeb0"
 dependencies = [
  "ttf-parser 0.12.3",
+]
+
+[[package]]
+name = "parallelrendering"
+version = "0.1.0"
+dependencies = [
+ "compactorsanim",
+ "compactorsrenderingcommon",
+ "ggez",
+ "itertools",
+ "png 0.17.2",
+ "rand",
+ "rand_distr",
+ "renderingcommon",
 ]
 
 [[package]]

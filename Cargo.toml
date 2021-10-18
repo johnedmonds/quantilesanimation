@@ -2,7 +2,9 @@
 members = [
     "compactorsanim",
     "compactorsrendering",
+    "compactorsrenderingcommon",
     "distanim",
     "distrendering",
+    "parallelrendering",
     "renderingcommon",
 ]
